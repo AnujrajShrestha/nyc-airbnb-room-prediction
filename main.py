@@ -6,7 +6,7 @@ import pandas as pd
 from fastapi.middleware.cors import CORSMiddleware
 
 app= FastAPI()
-model= joblib.load(r"room_model_pipeline.pkl")
+model= joblib.load(r"Model_Pipeline.pkl")
 
 app.add_middleware(
     CORSMiddleware,
