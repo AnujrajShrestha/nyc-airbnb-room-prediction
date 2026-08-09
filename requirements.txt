@@ -1,6 +1,6 @@
 fastapi
-uvicorn[standard]
-pydantic
-pandas
-scikit-learn
+uvicorn
 joblib
+pandas
+scikit-learn==1.6.1
+python-dotenv
