@@ -53,8 +53,9 @@ def predict(features: Features):
         probability= model.predict_proba(row)
         
         return{
+            "message": "Your api is working",
             "predicted_room_type":prediction[0],
-            "probability": probability.tolist()[0]
+            "probability": probability.tolist()[0],
         }
     except Exception as e:
         raise HTTPException(
