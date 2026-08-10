@@ -153,15 +153,16 @@ const buildingsRow = document.getElementById("buildingsRow");
 const probList = document.getElementById("probList");
 
 function renderResult(result) {
-  const predicted = result.Predicted_room_type;
-  const probs = result.Probability; // array aligned to model.classes_ order
+  const predicted = result.predicted_room_type;
+  const probs = result.probability;
 
-  // Pair each class with its probability. We trust ROOM_CLASSES order
-  // matches sklearn's alphabetical classes_ output; fall back gracefully
-  // if lengths mismatch.
+  if (!predicted || !Array.isArray(probs)) {
+    throw new Error("Invalid prediction response from API.");
+  }
+
   const paired = ROOM_CLASSES.map((cls, i) => ({
     ...cls,
-    prob: typeof probs?.[i] === "number" ? probs[i] : 0,
+    prob: typeof probs[i] === "number" ? probs[i] : 0,
   }));
 
   resultEmpty.hidden = true;
